@@ -16,15 +16,15 @@ jobs:
     container:
       image: node:16 # specifies the image that should be used to create the container
     env:
-      MONGODB_CONNECTION_PROTOCOL: mongo # we can use the label of the service container here since both the job and mongodb run inside containers. Docker auto-setup network for the containers so they can talk to each other by just container name and not ip address
-      MONGODB_CLUSTER_ADDRESS: mongo # Same as above
+      MONGODB_CONNECTION_PROTOCOL: mongodb # we can use the label of the service container here since both the job and mongodb run inside containers. Docker auto-setup network for the containers so they can talk to each other by just container name and not ip address
+      MONGODB_CLUSTER_ADDRESS: mongodb # Same as above
       MONGODB_USERNAME: root
       MONGODB_PASSWORD: example
       PORT: 8080
     # setup service containerss 
     services:
       # this setup is used to create a containerized mongo db. So we are not connecting to mongo atlas again
-      mongodb: # name of 1st container
+      mongodb: # label of 1st container
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: root
