@@ -11,6 +11,10 @@ jobs:
   test:
     environment: testing
     runs-on: ubuntu-latest
+    # with this, all steps in the job "test" run in a contianer and not directly on the runner machine. 
+    # The runner machine has docker (which host the image) installed on it
+    container:
+      image: node:16 # specifies the image that should be used to create the container
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb+srv
       MONGODB_CLUSTER_ADDRESS: cluster0.bo0mf7g.mongodb.net
